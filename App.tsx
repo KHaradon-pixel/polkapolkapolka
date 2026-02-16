@@ -63,8 +63,6 @@ const App: React.FC = () => {
       .sort((a, b) => a.slotId.localeCompare(b.slotId)); // Simple sort by slot ID
   }, [selections, sessions]);
 
-  const allSlotsFilled = TIME_SLOTS.every(slot => !!selections[slot.id]);
-
   if (!hasStarted) {
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -74,26 +72,30 @@ const App: React.FC = () => {
                     <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6 text-red-600">
                         <CalendarCheck size={40} />
                     </div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-4">Welcome to PD Day</h2>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-4">Barrington 220 PD</h2>
                     <p className="text-gray-600 mb-8">
-                        Please enter your name to begin selecting your sessions for the Barrington 220 Professional Development workshop.
+                        Welcome! Please enter your name to begin selecting your sessions for the June 2-3 Professional Development workshops.
                     </p>
                     
                     <input 
                         type="text"
                         value={userName}
                         onChange={(e) => setUserName(e.target.value)}
-                        placeholder="Enter your full name"
+                        placeholder="Enter your name to sign in"
                         className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all mb-4 text-center text-lg"
                     />
 
                     <button 
                         onClick={() => setHasStarted(true)}
                         disabled={!userName.trim()}
-                        className="w-full py-3.5 rounded-xl font-bold text-white bg-red-700 hover:bg-red-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                        className="w-full py-3.5 rounded-xl font-bold text-white bg-red-800 hover:bg-red-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                     >
                         Start Registration <ChevronRight size={20} />
                     </button>
+                    
+                    <div className="mt-8 text-xs text-gray-400">
+                        Official Barrington 220 Schedule • June 2-3
+                    </div>
                 </div>
             </main>
         </div>
@@ -147,10 +149,14 @@ const App: React.FC = () => {
             <button
                 onClick={() => setIsModalOpen(true)}
                 disabled={selectedSessionsList.length === 0}
-                className="w-14 h-14 bg-red-700 text-white rounded-full shadow-xl flex items-center justify-center hover:bg-red-800 transition-all disabled:opacity-50"
+                className="w-14 h-14 bg-red-800 text-white rounded-full shadow-xl flex items-center justify-center hover:bg-red-900 transition-all disabled:opacity-50"
             >
                 <CalendarCheck size={24} />
             </button>
+        </div>
+
+        <div className="mt-16 text-center text-sm text-gray-400 border-t pt-8 pb-4">
+            Barrington 220 School District • Professional Development
         </div>
 
       </main>
